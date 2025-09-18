@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Dashboard</h2>
+
+<div class="mb-3">
+  <a href="{{ url_for('main.add_key') }}" class="btn btn-success">
+    <i class="fas fa-plus"></i> Add New Key
+  </a>
+</div>
+
+<!-- Search and filter form -->
+<form method="GET" action="{{ url_for('main.dashboard') }}" class="row g-3 mb-4">
+  <div class="col-md-4">
+    <input type="text" name="search" value="{{ request.args.get('search') }}" placeholder="Search keys..." class="form-control" />
+  </div>
+  <div class="col-md-3">
+    <select name="category" class="form-select">
+      <option value="">All Categories</option>
+      {% for category in categories %}
+      <option value="{{ category }}" {% if request.args.get('category') == category %}selected{% endif %}>{{ category }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-md-3">
+    <button class="btn btn-primary" type="submit">Filter</button>
+  </div>
+</form>
+
+{% if keys %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Tags</th>
+      <th>Created</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for key in keys %}
+    <tr>
+      <td>{{ key.name }}</td>
+      <td>{{ key.category or '-' }}</td>
+      <td>{{ key.description or '-' }}</td>
+      <td>
+        {% if key.tags %}
+          {% for tag in key.tags %}
+            <span class="badge bg-secondary">{{ tag }}</span>
+          {% endfor %}
+        {% else %}
+          -
+        {% endif %}
+      </td>
+      <td>{{ key.created_at[:10] }}</td>
+      <td>
+        <a href="{{ url_for('main.view_key', key_name=key.name) }}" class="btn btn-sm btn-info">View</a>
+        <a href="{{ url_for('main.edit_key', key_name=key.name) }}" class="btn btn-sm btn-warning">Edit</a>
+        <a href="{{ url_for('main.delete_key', key_name=key.name) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this key?');">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="alert alert-info">No keys found. <a href="{{ url_for('main.add_key') }}">Add your first key</a>.</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,225 @@
+/* Print styles for reports and key exports */
+
+@media print {
+  /* Hide non-printable elements */
+  .navbar,
+  .btn,
+  .dropdown,
+  .theme-toggle,
+  .bulk-actions,
+  .pagination,
+  .alert,
+  .modal,
+  .tooltip,
+  .popover {
+    display: none !important;
+  }
+
+  /* Reset colors for better printing */
+  * {
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    font-family: "Times New Roman", serif !important;
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
+    color: #000 !important;
+    background: white !important;
+  }
+
+  /* Page setup */
+  @page {
+    margin: 0.5in;
+    size: letter;
+  }
+
+  /* Headers and titles */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    font-weight: bold !important;
+  }
+
+  h1 { font-size: 18pt !important; }
+  h2 { font-size: 16pt !important; }
+  h3 { font-size: 14pt !important; }
+
+  /* Tables */
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+
+  th, td {
+    border: 1px solid #000 !important;
+    padding: 4pt 6pt !important;
+    vertical-align: top !important;
+  }
+
+  th {
+    background: #f0f0f0 !important;
+    font-weight: bold !important;
+  }
+
+  /* Cards and containers */
+  .card {
+    border: 1px solid #000 !important;
+    margin-bottom: 10pt !important;
+    page-break-inside: avoid;
+  }
+
+  .card-header {
+    background: #f0f0f0 !important;
+    font-weight: bold !important;
+    padding: 6pt !important;
+  }
+
+  .card-body {
+    padding: 6pt !important;
+  }
+
+  /* Key information */
+  .key-item {
+    border: 1px solid #000 !important;
+    margin-bottom: 10pt !important;
+    padding: 8pt !important;
+    page-break-inside: avoid;
+  }
+
+  .key-name {
+    font-weight: bold !important;
+    font-size: 14pt !important;
+    margin-bottom: 4pt !important;
+  }
+
+  .key-value {
+    font-family: "Courier New", monospace !important;
+    background: #f8f8f8 !important;
+    border: 1px solid #ccc !important;
+    padding: 4pt !important;
+    margin: 4pt 0 !important;
+  }
+
+  /* Hide sensitive information by default */
+  .sensitive-info {
+    display: none !important;
+  }
+
+  /* Show sensitive info only when explicitly requested */
+  .print-sensitive .sensitive-info {
+    display: block !important;
+  }
+
+  /* Badge styling */
+  .badge {
+    border: 1px solid #000 !important;
+    padding: 2pt 4pt !important;
+    margin: 0 2pt !important;
+    font-size: 8pt !important;
+  }
+
+  /* Links */
+  a {
+    text-decoration: underline !important;
+    color: #000 !important;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+    color: #666;
+  }
+
+  /* Page breaks */
+  .page-break {
+    page-break-before: always;
+  }
+
+  .no-break {
+    page-break-inside: avoid;
+  }
+
+  /* Footer for each page */
+  @page {
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+      font-size: 10pt;
+      color: #666;
+    }
+    
+    @bottom-left {
+      content: "Key Locker Export - " date(iso);
+      font-size: 10pt;
+      color: #666;
+    }
+  }
+
+  /* Print-specific utility classes */
+  .print-only {
+    display: block !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  /* Audit log styling for print */
+  .audit-log-item {
+    border-bottom: 1px solid #ccc !important;
+    padding: 4pt 0 !important;
+    page-break-inside: avoid;
+  }
+
+  .audit-timestamp {
+    font-weight: bold !important;
+    font-size: 10pt !important;
+  }
+
+  .audit-action {
+    font-size: 11pt !important;
+    margin: 2pt 0 !important;
+  }
+
+  .audit-details {
+    font-size: 10pt !important;
+    color: #666 !important;
+  }
+}
+
+/* Print preparation styles */
+.print-header {
+  display: none;
+  text-align: center;
+  border-bottom: 2px solid #000;
+  padding-bottom: 10pt;
+  margin-bottom: 20pt;
+}
+
+@media print {
+  .print-header {
+    display: block !important;
+  }
+}
+
+/* Print button styling */
+.print-btn {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  z-index: 1040;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media print {
+  .print-btn {
+    display: none !important;
+  }
+}

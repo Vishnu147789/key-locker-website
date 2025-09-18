@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-4 text-center">
+    <img src="{{ url_for('static', filename='images/icons/user_authentication_icon.png') }}" alt="User Authentication Icon" width="80" class="mb-3" />
+    <h2>Two-Factor Authentication</h2>
+    <form method="POST" action="{{ url_for('auth.verify_2fa') }}">
+      <div class="mb-3">
+        <label for="totp_token" class="form-label">Enter 6-digit authentication code</label>
+        <input type="text" name="totp_token" id="totp_token" class="form-control" pattern="\d{6}" maxlength="6" required autofocus />
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Verify</button>
+      <a href="{{ url_for('auth.logout') }}" class="btn btn-link mt-3 d-block text-center">Cancel and Logout</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

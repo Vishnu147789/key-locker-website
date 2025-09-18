@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>View Key: {{ key.name }}</h2>
+
+<div class="mb-3">
+  <label>Key Value</label>
+  <input type="password" class="form-control" id="keyValue" readonly value="••••••••••" />
+  <button class="btn btn-sm btn-outline-secondary mt-2" onclick="toggleKeyValue()">Show/Hide</button>
+  <button class="btn btn-sm btn-outline-primary mt-2" onclick="copyKeyValue()">Copy</button>
+</div>
+
+<div class="mb-3">
+  <label>Description</label>
+  <p>{{ key.description or 'No description provided' }}</p>
+</div>
+
+<div class="mb-3">
+  <label>Category</label>
+  <p>{{ key.category or '-' }}</p>
+</div>
+
+<div class="mb-3">
+  <label>Tags</label>
+  <p>
+    {% if key.tags %}
+    {% for tag in key.tags %}
+      <span class="badge bg-secondary">{{ tag }}</span>
+    {% endfor %}
+    {% else %}-{% endif %}
+  </p>
+</div>
+
+<a href="{{ url_for('main.dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+
+<script>
+  const keyValueField = document.getElementById('keyValue');
+  let isVisible = false;
+  function toggleKeyValue() {
+    if (isVisible) {
+      keyValueField.type = 'password';
+      keyValueField.value = '••••••••••';
+      isVisible = false;
+    } else {
+      // Fetch the decrypted value via Ajax if desired, or show placeholder
+      keyValueField.type = 'text';
+      // In real app, fetch decrypted value securely
+      keyValueField.value = '{{ key.decrypted_value or \"\" }}';
+      isVisible = true;
+    }
+  }
+  function copyKeyValue() {
+    navigator.clipboard.writeText(keyValueField.value).then(() => {
+      alert('Key value copied to clipboard');
+    });
+  }
+</script>
+{% endblock %}

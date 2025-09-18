@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>System Analytics</h2>
+
+<div class="row mt-4">
+  <div class="col-md-3">
+    <div class="card text-white bg-primary mb-3">
+      <div class="card-header">Total Users</div>
+      <div class="card-body">
+        <h5 class="card-title">{{ total_users }}</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card text-white bg-success mb-3">
+      <div class="card-header">Active Keys</div>
+      <div class="card-body">
+        <h5 class="card-title">{{ total_keys }}</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card text-white bg-warning mb-3">
+      <div class="card-header">Monthly Logins</div>
+      <div class="card-body">
+        <h5 class="card-title">{{ monthly_logins }}</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card text-white bg-danger mb-3">
+      <div class="card-header">Failed Logins</div>
+      <div class="card-body">
+        <h5 class="card-title">{{ failed_logins }}</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Optionally add charts here -->
+
+{% endblock %}

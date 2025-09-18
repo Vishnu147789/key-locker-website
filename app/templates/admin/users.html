@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>User Management</h2>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Account Locked</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.role }}</td>
+      <td>{% if user.account_locked %}Yes{% else %}No{% endif %}</td>
+      <td>
+        <a href="{{ url_for('admin.edit_user', username=user.username) }}" class="btn btn-sm btn-warning">Edit</a>
+        <a href="{{ url_for('admin.disable_user', username=user.username) }}" class="btn btn-sm btn-danger" onclick="return confirm('Disable user {{ user.username }}?');">Disable</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

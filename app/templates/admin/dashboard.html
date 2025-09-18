@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+
+<p>Welcome, {{ session.get('username') }}. Here you can manage users and monitor system activity.</p>
+
+<a href="{{ url_for('admin.users') }}" class="btn btn-primary mb-3">Manage Users</a>
+<a href="{{ url_for('admin.analytics') }}" class="btn btn-secondary mb-3">View Analytics</a>
+<a href="{{ url_for('admin.audit_logs') }}" class="btn btn-warning mb-3">Audit Logs</a>
+
+<!-- Example analytics summary -->
+<div class="row mt-4">
+  <div class="col-md-4">
+    <div class="card p-3">
+      <h5>Total Users</h5>
+      <p>{{ user_count }}</p>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card p-3">
+      <h5>Total Keys</h5>
+      <p>{{ key_count }}</p>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card p-3">
+      <h5>Active Sessions</h5>
+      <p>{{ active_sessions }}</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

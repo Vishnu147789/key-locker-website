@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Share Key: {{ key_name }}</h2>
+
+<form method="POST" action="{{ url_for('main.share_key', key_name=key_name) }}">
+  <div class="mb-3">
+    <label for="target_username" class="form-label">Share With (Username)</label>
+    <input type="text" id="target_username" name="target_username" class="form-control" required />
+  </div>
+
+  <div class="mb-3 form-check">
+    <input class="form-check-input" type="checkbox" id="read_permission" name="read_permission" checked />
+    <label class="form-check-label" for="read_permission">Read Permission</label>
+  </div>
+
+  <div class="mb-3 form-check">
+    <input class="form-check-input" type="checkbox" id="write_permission" name="write_permission" />
+    <label class="form-check-label" for="write_permission">Write Permission</label>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Share Key</button>
+  <a href="{{ url_for('main.dashboard') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

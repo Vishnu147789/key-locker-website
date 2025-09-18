@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center mt-5">
+  <h1 class="display-1">503</h1>
+  <p class="lead">Service Unavailable</p>
+  <a href="{{ url_for('main.index') }}" class="btn btn-primary">Try Again</a>
+</div>
+{% endblock %}

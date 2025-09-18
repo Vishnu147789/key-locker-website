@@ -1,0 +1,166 @@
+/* Reusable component styles */
+
+/* Custom card styles */
+.card-modern {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-modern:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Loading spinner */
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Status indicators */
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status-online { background-color: #28a745; }
+.status-offline { background-color: #6c757d; }
+.status-warning { background-color: #ffc107; }
+.status-error { background-color: #dc3545; }
+
+/* Custom switches */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #0d6efd;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Progress bars */
+.progress-modern {
+  height: 10px;
+  border-radius: 5px;
+  background-color: #e9ecef;
+  overflow: hidden;
+}
+
+.progress-modern .progress-bar {
+  border-radius: 5px;
+  transition: width 0.6s ease;
+}
+
+/* Tags */
+.tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background-color: #e9ecef;
+  color: #495057;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin: 2px;
+  text-decoration: none;
+}
+
+.tag:hover {
+  background-color: #0d6efd;
+  color: white;
+  text-decoration: none;
+}
+
+.tag.tag-primary { background-color: #0d6efd; color: white; }
+.tag.tag-success { background-color: #28a745; color: white; }
+.tag.tag-warning { background-color: #ffc107; color: #212529; }
+.tag.tag-danger { background-color: #dc3545; color: white; }
+
+/* Empty states */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6c757d;
+}
+
+.empty-state i {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  color: #495057;
+  margin-bottom: 10px;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .card-modern {
+    margin-bottom: 20px;
+  }
+  
+  .switch {
+    width: 40px;
+    height: 20px;
+  }
+  
+  .slider:before {
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(20px);
+  }
+}

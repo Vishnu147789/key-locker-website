@@ -1,0 +1,95 @@
+/* Admin panel styles */
+
+.admin-sidebar {
+  background: #343a40;
+  min-height: calc(100vh - 76px);
+  padding: 20px 0;
+}
+
+.admin-sidebar .nav-link {
+  color: #adb5bd;
+  padding: 12px 20px;
+  border-radius: 0;
+}
+
+.admin-sidebar .nav-link:hover,
+.admin-sidebar .nav-link.active {
+  background: #495057;
+  color: white;
+}
+
+.admin-content {
+  padding: 30px;
+}
+
+.stats-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+
+.stats-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.stats-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin: 5px 0 0 0;
+}
+
+.audit-log {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.audit-log-item {
+  padding: 15px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.audit-log-item:last-child {
+  border-bottom: none;
+}
+
+.audit-timestamp {
+  color: #6c757d;
+  font-size: 0.85rem;
+}
+
+.audit-action {
+  font-weight: 600;
+  color: #495057;
+}
+
+.audit-details {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.user-status.active {
+  color: #28a745;
+}
+
+.user-status.locked {
+  color: #dc3545;
+}
+
+.user-role {
+  background: #e9ecef;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: #495057;
+}
+
+.user-role.admin {
+  background: #ffeaa7;
+  color: #2d3436;
+}

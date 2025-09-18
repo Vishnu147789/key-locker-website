@@ -1,0 +1,29 @@
+/* Dashboard specific styles */
+
+.key-card {
+  transition: 0.3s ease;
+}
+
+.key-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.key-checkbox {
+  cursor: pointer;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.badge {
+  font-size: 0.75em;
+  padding: 0.25em 0.5em;
+  margin-right: 0.2em;
+  border-radius: 10px;
+}
+
+.btn-group {
+  margin-left: 10px;
+}

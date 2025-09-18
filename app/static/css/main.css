@@ -1,0 +1,64 @@
+/* Key Locker main styles */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+.container {
+  max-width: 960px;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 4px;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+/* Forms */
+.form-label {
+  font-weight: 600;
+}
+
+.form-control {
+  border-radius: 4px;
+}
+
+/* Badges */
+.badge {
+  border-radius: 12px;
+}
+
+/* Alerts */
+.alert {
+  border-radius: 4px;
+}
+
+/* Table */
+.table thead th {
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

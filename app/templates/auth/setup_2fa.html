@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center mb-4">
+  <img src="{{ url_for('static', filename='images/icons/user_authentication_icon.png') }}" alt="User Authentication" width="80" />
+</div>
+
+<h2>Setup Two-Factor Authentication (2FA)</h2>
+
+<div class="mb-4">
+  <p>Scan the QR code below with your authenticator app (Google Authenticator, Authy, etc.).</p>
+  <img src="data:image/png;base64,{{ qr_code }}" alt="2FA QR Code" />
+</div>
+
+<p>Your secret key: <code>{{ secret }}</code></p>
+
+<form method="POST" action="{{ url_for('auth.setup_2fa') }}">
+  <div class="mb-3">
+    <label for="totp_token" class="form-label">Enter the 6-digit code from your authenticator app</label>
+    <input type="text" name="totp_token" id="totp_token" class="form-control" pattern="\\d{6}" maxlength="6" required autofocus />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Enable 2FA</button>
+  <a href="{{ url_for('main.dashboard') }}" class="btn btn-secondary">Cancel</a>
+</form>
+
+{% endblock %}

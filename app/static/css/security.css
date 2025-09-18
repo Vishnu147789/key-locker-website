@@ -1,0 +1,12 @@
+/* Security related styles */
+
+#strengthBar {
+  height: 6px;
+  border-radius: 3px;
+  transition: width 0.3s ease-in-out;
+}
+
+#strengthText {
+  font-size: 0.85em;
+  margin-top: 3px;
+}

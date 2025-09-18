@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add a New Key</h2>
+<form method="POST" action="{{ url_for('main.add_key') }}">
+  <div class="mb-3">
+    <label for="key_name" class="form-label">Key Name</label>
+    <input type="text" class="form-control" id="key_name" name="key_name" required />
+  </div>
+  <div class="mb-3">
+    <label for="key_value" class="form-label">Key Value</label>
+    <textarea class="form-control" id="key_value" name="key_value" rows="4" required></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description (Optional)</label>
+    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="category" class="form-label">Category (Optional)</label>
+    <input type="text" class="form-control" id="category" name="category" />
+  </div>
+  <div class="mb-3">
+    <label for="tags" class="form-label">Tags (Optional, comma separated)</label>
+    <input type="text" class="form-control" id="tags" name="tags" />
+  </div>
+  <button type="submit" class="btn btn-primary">Add Key</button>
+  <a href="{{ url_for('main.dashboard') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
