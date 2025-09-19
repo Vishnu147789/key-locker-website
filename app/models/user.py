@@ -2,6 +2,7 @@ import os
 import json
 import pyotp
 import qrcode
+import base64
 from io import BytesIO
 from datetime import datetime, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -10,7 +11,6 @@ from app.utils.encryption import get_encryption_manager
 
 class User:
     """User model for Key Locker"""
-
     def __init__(self, username, **kwargs):
         self.username = username
         self.email = kwargs.get('email')
@@ -33,7 +33,6 @@ class User:
         """Check password and track failed attempts"""
         if self.is_account_locked():
             return False
-
         if check_password_hash(self.password_hash, password):
             self.login_attempts = 0
             self.last_login = datetime.utcnow().isoformat()
@@ -65,20 +64,17 @@ class User:
         """Generate TOTP secret and QR code for 2FA setup"""
         if not self.two_fa_secret:
             self.two_fa_secret = pyotp.random_base32()
-
         totp_uri = pyotp.totp.TOTP(self.two_fa_secret).provisioning_uri(
             self.username, issuer_name=current_app.config['APP_NAME']
         )
-
         qr = qrcode.QRCode(version=1, box_size=10, border=5)
         qr.add_data(totp_uri)
         qr.make(fit=True)
         img = qr.make_image(fill_color="black", back_color="white")
         buffer = BytesIO()
         img.save(buffer, format="PNG")
-        qr_code_base64 = buffer.getvalue().hex()
+        qr_code_base64 = base64.b64encode(buffer.getvalue()).decode()
         buffer.close()
-
         return {
             'secret': self.two_fa_secret,
             'qr_code': qr_code_base64,
@@ -138,7 +134,6 @@ class User:
         users_file = os.path.join(
             current_app.config['DATA_DIR'], 'encrypted', 'users.json.enc'
         )
-
         users_data = {}
         if os.path.exists(users_file):
             try:
@@ -146,7 +141,6 @@ class User:
                 users_data = get_encryption_manager().decrypt_data(encrypted)
             except Exception:
                 users_data = {}
-
         users_data[self.username] = {
             'password_hash': self.password_hash,
             'email': self.email,
@@ -160,7 +154,6 @@ class User:
             'account_locked': self.account_locked,
             'lock_until': self.lock_until
         }
-
         encrypted_data = get_encryption_manager().encrypt_data(users_data)
         os.makedirs(os.path.dirname(users_file), exist_ok=True)
         with open(users_file, 'w') as f:
