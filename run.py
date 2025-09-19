@@ -1,7 +1,10 @@
-from app import create_app
+from flask import Flask
+from config import get_config
 import os
 
-app = create_app(os.environ.get('FLASK_ENV', 'development'))
+app = Flask(__name__)
+app.config.from_object(get_config(os.environ.get('FLASK_ENV', 'development')))
+get_config().init_app(app)
 
 if __name__ == '__main__':
     app.run(
